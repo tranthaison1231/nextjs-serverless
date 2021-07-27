@@ -1,0 +1,31 @@
+{
+  "project":{
+    "name": "WilLink"
+  },
+  "button": {
+    "login": "Login",
+    "register": "Register",
+    "send": "Send",
+    "cancel": "Cancel"
+  },
+  "login":{
+    "email": "Email",
+    "password": "Password",
+    "remember": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "confirmAccount": "Don't have an account?"
+  },
+  "forgotPassword": {
+    "title": "Forgot password",
+    "description":"Please enter your email address to get code login."
+  },
+  "register":{
+    "firstName":"First name",
+    "lastName":"Last name",
+    "phoneNumber":"Phone number",
+    "password": "Confirm password",
+    "confirmPassword": "Confirm password is not match!",
+    "confirmAccount":"You have an account already?",
+    "description": "By clicking on Register, you agreed to our Terms of Service and Privacy Policy"
+  }
+}

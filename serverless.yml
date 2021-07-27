@@ -1,0 +1,9 @@
+willink-web:
+  component: '@sls-next/serverless-component@latest'
+  inputs:
+    minifyHandlers: true
+    logLambdaExecutionTimes: true
+    useServerlessTraceTarget: true
+    build:
+      postBuildCommands: ['node scripts/post-build.js']
+    

@@ -1,0 +1,22 @@
+include: 'https://gitlab-ci-yaml-template.enouvo.com/serverless/.gitlab-ci.yml'
+
+deploy_staging:
+  stage: deploy
+  variables:
+    AWS_ACCESS_KEY_ID: '${SERVERLESS_AWS_ACCESS_KEY_ID}'
+    AWS_SECRET_ACCESS_KEY: '${SERVERLESS_AWS_SECRET_ACCESS_KEY}'
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  before_script:
+    - curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
+    - apt-get install -y nodejs
+    - curl -o- -L https://slss.io/install | bash
+    - export PATH="$HOME/.serverless/bin:$PATH"
+    - npm install --global yarn
+  script:
+    - yarn install
+    - yarn build
+    - serverless
+  after_script:
+    - echo "Deploy to Next.JS Serverless "
+  only:
+    - staging

@@ -1,0 +1,41 @@
+overwrite: true
+schema:
+  - ${BASE_URL}:
+      headers:
+        authorization: ${CODE_GEN_TOKEN}
+config:
+  namingConvention:
+    transformUnderscore: true
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+
+generates:
+  src/generated/schemas.tsx:
+    documents: 'src/graphql/**/**/**.gql'
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      withHOC: false
+      withComponent: false
+      withHooks: true
+      reactApolloVersion: 3
+
+  src/generated/page.tsx:
+    documents: 'src/graphql/**/**/**.gql'
+    config:
+      withHOC: false
+      documentMode: external
+      importDocumentNodeExternallyFrom: ./schemas
+      reactApolloVersion: 3
+      withHooks: true
+    preset: import-types
+    presetConfig:
+      typesPath: ./schemas
+    plugins:
+      - add:
+          content:
+            - '/* eslint-disable  */'
+      - graphql-codegen-apollo-next-ssr

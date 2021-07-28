@@ -7,8 +7,6 @@ const { withSentryConfig } = require('@sentry/nextjs');
 const TerserPlugin = require('terser-webpack-plugin');
 const { i18n } = require('./next-i18next.config');
 
-const withTM = require('next-transpile-modules')(['@base-projects/web-uikit']);
-
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
@@ -23,8 +21,6 @@ const withPWA = require('next-pwa')({
     register: true,
   },
 });
-
-
 
 const nextConfig = {
   images: {
@@ -65,7 +61,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withPlugins(
-  [withPWA, withTM, withBundleAnalyzer],
-  nextConfig,
-);
+module.exports = withPlugins([withPWA, withBundleAnalyzer], nextConfig);
